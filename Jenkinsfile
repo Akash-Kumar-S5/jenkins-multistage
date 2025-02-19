@@ -15,6 +15,7 @@ pipeline {
                 sh "terraform init"
             }
         }
+        stage("parallel ex"){
         parallel{
         stage('Deploy to Dev') {
             steps {
@@ -42,6 +43,7 @@ pipeline {
                 terraform apply -auto-approve -var-file=envs/prod.tfvars
                 '''
             }
+        }
         }
         }
     }
