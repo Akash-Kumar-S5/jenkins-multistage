@@ -17,19 +17,19 @@ pipeline {
         stage('Deploy to Dev') {
             steps {
                 sh "terraform plan -var-file=envs/dev.tfvars"
-                sh "terraform destroy -auto-approve -var-file=envs/dev.tfvars"
+                sh "terraform apply -auto-approve -var-file=envs/dev.tfvars"
             }
         }
         stage('Deploy to Stage') {
             steps {
                 sh "terraform plan -var-file=envs/stage.tfvars"
-                sh "terraform destroy -auto-approve -var-file=envs/stage.tfvars"
+                sh "terraform apply -auto-approve -var-file=envs/stage.tfvars"
             }
         }
         stage('Deploy to Prod') {
             steps {
                 sh "terraform plan -var-file=envs/prod.tfvars"
-                sh "terraform destroy -auto-approve -var-file=envs/prod.tfvars"
+                sh "terraform apply -auto-approve -var-file=envs/prod.tfvars"
             }
         }
     }
