@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                 terraform workspace select dev || terraform workspace new dev
                 terraform plan -var-file=envs/dev.tfvars
-                terraform apply -auto-approve -var-file=envs/dev.tfvars
+                terraform destroy -auto-approve -var-file=envs/dev.tfvars
                 '''
             }
         }
@@ -28,7 +28,7 @@ pipeline {
                 sh '''
                 terraform workspace select stage || terraform workspace new stage
                 terraform plan -var-file=envs/stage.tfvars
-                terraform apply -auto-approve -var-file=envs/stage.tfvars
+                terraform destroy -auto-approve -var-file=envs/stage.tfvars
                 '''
             }
         }
@@ -37,7 +37,7 @@ pipeline {
                 sh '''
                 terraform workspace select prod || terraform workspace new prod
                 terraform plan -var-file=envs/prod.tfvars
-                terraform apply -auto-approve -var-file=envs/prod.tfvars
+                terraform destroy -auto-approve -var-file=envs/prod.tfvars
                 '''
             }
         }
